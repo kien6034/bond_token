@@ -1,0 +1,786 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_par",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_parDecimals",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coupon",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_term",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_cap",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_timesToRedeem",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_tokenToRedeem",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_loopLimit",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amountClaimed",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimedPar",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "bondsAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "MintedBond",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipRenounced",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "bonds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "RedeemedCoupons",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "bonds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "Transferred",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_loopLimit",
+						"type": "uint256"
+					}
+				],
+				"name": "changeLoopLimit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "donate",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "who",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "bond",
+						"type": "uint256"
+					}
+				],
+				"name": "getBondOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCouponRate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCouponThreshold",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "bond",
+						"type": "uint256"
+					}
+				],
+				"name": "getCouponsRedeemed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "bond",
+						"type": "uint256"
+					}
+				],
+				"name": "getLastTimeRedeemed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "bond",
+						"type": "uint256"
+					}
+				],
+				"name": "getMaturity",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getNonce",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getParDecimals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getParValue",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "bond",
+						"type": "uint256"
+					}
+				],
+				"name": "getRemainingCoupons",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSimpleInterest",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTerm",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTimesToRedeem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTokenAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTokenToRedeem",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTotalBonds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTotalDebt",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_bondsAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "mintBond",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "_bonds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "redeemCoupons",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_bonds",
+						"type": "uint256[]"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"changeLoopLimit(uint256)": {
+					"params": {
+						"_loopLimit": "The new loop limit"
+					}
+				},
+				"getBalance(address)": {
+					"details": "Get amount of bonds that an address has",
+					"params": {
+						"who": "The address to analyze"
+					}
+				},
+				"getBondOwner(uint256)": {
+					"details": "Get the owner of a specific bond",
+					"params": {
+						"bond": "The bond id to analyze"
+					}
+				},
+				"getCap()": {
+					"details": "Get the cap amount for these bonds"
+				},
+				"getCouponRate()": {
+					"details": "Get the yield of a bond"
+				},
+				"getCouponThreshold()": {
+					"details": "Get the amount of time that needs to pass between the dates when you can redeem coupons"
+				},
+				"getCouponsRedeemed(uint256)": {
+					"details": "Get how many coupons were redeemed for a specific bond",
+					"params": {
+						"bond": "The bond id to analyze"
+					}
+				},
+				"getLastTimeRedeemed(uint256)": {
+					"details": "Get the last time coupons for a particular bond were redeemed",
+					"params": {
+						"bond": "The bond id to analyze"
+					}
+				},
+				"getMaturity(uint256)": {
+					"details": "Get the maturity date for a specific bond",
+					"params": {
+						"bond": "The bond id to analyze"
+					}
+				},
+				"getName()": {
+					"details": "Get the name of this smart bond contract"
+				},
+				"getNonce()": {
+					"details": "Get the latest nonce"
+				},
+				"getParDecimals()": {
+					"details": "If the par value is a real number, it might have decimals. Get the amount of decimals the par value has"
+				},
+				"getParValue()": {
+					"details": "Get the par value for these bonds"
+				},
+				"getRemainingCoupons(uint256)": {
+					"details": "Get how many coupons remain to be redeemed for a specific bond",
+					"params": {
+						"bond": "The bond id to analyze"
+					}
+				},
+				"getSimpleInterest()": {
+					"details": "Get how much money is redeemed on a coupon"
+				},
+				"getTerm()": {
+					"details": "Get how much time it takes for a bond to mature"
+				},
+				"getTimesToRedeem()": {
+					"details": "Get how many times coupons can be redeemed for bonds"
+				},
+				"getTokenAddress()": {
+					"details": "Get the address of the token that is redeemed for coupons"
+				},
+				"getTokenToRedeem()": {
+					"details": "Get the address of the token redeemed for coupons"
+				},
+				"getTotalBonds()": {
+					"details": "Get the total amount of bonds issued"
+				},
+				"getTotalDebt()": {
+					"details": "Get the current unpaid debt"
+				},
+				"mintBond(address,uint256)": {
+					"params": {
+						"_bondsAmount": "How many bonds to mint",
+						"buyer": "The buyer of the bonds"
+					}
+				},
+				"redeemCoupons(uint256[])": {
+					"params": {
+						"_bonds": "An array of bond ids corresponding to the bonds you want to redeem apon"
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Allows the current owner to relinquish control of the contract."
+				},
+				"transfer(address,uint256[])": {
+					"params": {
+						"_bonds": "The ids of the bonds that you want to transfer",
+						"receiver": "The receiver of the bonds"
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Allows the current owner to transfer control of the contract to a newOwner.",
+					"params": {
+						"_newOwner": "The address to transfer ownership to."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"changeLoopLimit(uint256)": {
+					"notice": "Change the number of elements you can loop through in this contract"
+				},
+				"donate()": {
+					"notice": "Donate money to this contract"
+				},
+				"mintBond(address,uint256)": {
+					"notice": "Mint bonds to a new buyer"
+				},
+				"redeemCoupons(uint256[])": {
+					"notice": "Redeem coupons on your bonds"
+				},
+				"renounceOwnership()": {
+					"notice": "Renouncing to ownership will leave the contract without an owner. It will not be possible to call the functions with the `onlyOwner` modifier anymore."
+				},
+				"transfer(address,uint256[])": {
+					"notice": "Transfer bonds to another address"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SimpleBond.sol": "SimpleBond"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SimpleBond.sol": {
+			"keccak256": "0x19c505f9944a93d4c17b39ae0c4d1bd9a48d5b638df8ab92fa7a9552449789a6",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://05e77c582762370834df7a3d15a17250032954b86e7231723ff39af8465809f7",
+				"dweb:/ipfs/Qmcn1iu1h6g81CCGh9TjoireBLXC1q7koahVqGRTgytgZx"
+			]
+		},
+		"interfaces/ISimpleBond.sol": {
+			"keccak256": "0x287c0a98f85522eb1f36c9e21694999ede89a56ecd71319421f0b73966a7c1c7",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://900c65312102886060df45b041efa71516c2de6c637b5c59cd6e0460dffac5e3",
+				"dweb:/ipfs/QmYcGtbkWAWs28ypztttquGmWzd9mQSsBxDXz8zsV4FduC"
+			]
+		},
+		"zeppelin/ERC20/BasicToken.sol": {
+			"keccak256": "0x7529fa05d8964dd6384dceebd91ff4431259b5d5b24117d651aa740181f300ef",
+			"license": "Unlicensed",
+			"urls": [
+				"bzz-raw://c6718571bdba6df66fa8d4285c096cfa1c1f56c7ad77ff9aa0e8a829a0f50389",
+				"dweb:/ipfs/QmUxEi2WY4u7JxCp9xrse1xS2jNA4Kxis4r3NQgQPUeiNN"
+			]
+		},
+		"zeppelin/ERC20/ERC20Basic.sol": {
+			"keccak256": "0x711e9a48bc85c98264a0a05f8b2375a03499a5dc43d5f71d3e1c8be97e58bf63",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f1ea751c15a78cd55e20322fd77f8573580d73feace11362917fa3d3063431e6",
+				"dweb:/ipfs/QmZLVFFRDdPwFZ7C5HXhbz1T9K4EiS7ZPjxnXHyygqEh1A"
+			]
+		},
+		"zeppelin/SafeMath.sol": {
+			"keccak256": "0xa8aaefbe19162c112cfd085de5250fadb316b24e50cc1afcc06d04bb9658d79a",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://20500efa0e723f213e83b0975a5dc5c3388be098d2a88ecdea06d4c7a96b5a5e",
+				"dweb:/ipfs/QmUyydPt1MSFHrK2FzLzs4ZGf7Q668gezZ6a3xJgpCE19T"
+			]
+		},
+		"zeppelin/ownership/Ownable.sol": {
+			"keccak256": "0x6077a1c74b7e4897f39b539fb99f394c37fe78d39ec0a8f824c6eec54a2c51d1",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f3d6ce62cb8412d211a2f0440258fa232864f9edda56ea47b234964b3fa5444c",
+				"dweb:/ipfs/QmT7evtpW4TZeNQnvhUPiQeXECaij8E8qdcctApF7YmRZA"
+			]
+		}
+	},
+	"version": 1
+}

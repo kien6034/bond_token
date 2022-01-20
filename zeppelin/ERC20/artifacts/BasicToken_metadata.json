@@ -1,0 +1,165 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Basic version of StandardToken, with no allowances.",
+			"kind": "dev",
+			"methods": {
+				"balanceOf(address)": {
+					"details": "Gets the balance of the specified address.",
+					"params": {
+						"_owner": "The address to query the the balance of."
+					},
+					"returns": {
+						"_0": "An uint256 representing the amount owned by the passed address."
+					}
+				},
+				"totalSupply()": {
+					"details": "Total number of tokens in existence"
+				},
+				"transfer(address,uint256)": {
+					"details": "Transfer token for a specified address",
+					"params": {
+						"_to": "The address to transfer to.",
+						"_value": "The amount to be transferred."
+					}
+				}
+			},
+			"title": "Basic token",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"zeppelin/ERC20/BasicToken.sol": "BasicToken"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"zeppelin/ERC20/BasicToken.sol": {
+			"keccak256": "0x7529fa05d8964dd6384dceebd91ff4431259b5d5b24117d651aa740181f300ef",
+			"license": "Unlicensed",
+			"urls": [
+				"bzz-raw://c6718571bdba6df66fa8d4285c096cfa1c1f56c7ad77ff9aa0e8a829a0f50389",
+				"dweb:/ipfs/QmUxEi2WY4u7JxCp9xrse1xS2jNA4Kxis4r3NQgQPUeiNN"
+			]
+		},
+		"zeppelin/ERC20/ERC20Basic.sol": {
+			"keccak256": "0x711e9a48bc85c98264a0a05f8b2375a03499a5dc43d5f71d3e1c8be97e58bf63",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f1ea751c15a78cd55e20322fd77f8573580d73feace11362917fa3d3063431e6",
+				"dweb:/ipfs/QmZLVFFRDdPwFZ7C5HXhbz1T9K4EiS7ZPjxnXHyygqEh1A"
+			]
+		},
+		"zeppelin/SafeMath.sol": {
+			"keccak256": "0xa8aaefbe19162c112cfd085de5250fadb316b24e50cc1afcc06d04bb9658d79a",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://20500efa0e723f213e83b0975a5dc5c3388be098d2a88ecdea06d4c7a96b5a5e",
+				"dweb:/ipfs/QmUyydPt1MSFHrK2FzLzs4ZGf7Q668gezZ6a3xJgpCE19T"
+			]
+		}
+	},
+	"version": 1
+}
